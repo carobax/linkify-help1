@@ -19,6 +19,18 @@
 
 <body>
 
+<style>
+  a:link{
+    color: #CF5B5A;
+  }
+  a:visited{
+    color: gray;
+  }
+  p, .font{
+    font-family: 'Open Sans', sans-serif;
+  }
+
+</style>
 
 <?php
 ini_set('display_errors', 1);
@@ -26,10 +38,7 @@ require_once('TwitterAPIExchange.php');
 
 /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
 $settings = array(
-    'oauth_access_token' => "717023921564950528-SmDtodry3F8nhILTUiC2j8WkBDMyer3",
-    'oauth_access_token_secret' => "NELmjD4Njx0YRmW7PKGpjuCrzv8rtfPpmqyoDjjdLYNVB",
-    'consumer_key' => "zYOEVn6MQyxSMvKnA6eCycO0S",
-    'consumer_secret' => "wi2GS3hVvFo8cIDsBLl2SI0qNgS59aGfKzW5i63NzUh4E8Ay5L"
+
 );
 
 // /** URL for REST request, see: https://dev.twitter.com/docs/api/1.1/ **/
@@ -62,8 +71,10 @@ $tweetData = json_decode($twitter->setGetfield($getfield)
 
 foreach($tweetData['statuses'] as $index => $items){
   $userArray = $items['user'];
-  echo '<div class="font-family: Helvetica;"><p style="border-bottom: 2px solid gray;padding-bottom: 10px;"><a href="https://twitter.com/' . $userArray['screen_name'] . '"><img class="img-circle" src="'. $userArray['profile_image_url'] . '"></a>';
-  echo $items['text']. "<br /></p></div>";
+  echo '<p class " tweet"><a href="https://twitter.com/' . $userArray['screen_name'] . '"><img src="' . $userArray['profile_image_url'] . '"></a> @' . $userArray['screen_name'] . '</p>';
+  echo '<p class="tweet"><a class= "tweet" href="https://twitter.com/' . $userArray['screen_name'] . '"><img class="tweet" src="' . $userArray['profile_image_url'] . '"></a>';
+  echo $items['text']. "<br /></p>";
+
   // echo $userArray['profile_image_url']. "<br />";
 }
 ?>
